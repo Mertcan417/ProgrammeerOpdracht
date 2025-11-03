@@ -52,11 +52,15 @@ Voor de opslag wordt een in-memory lijst gebruikt. Daarnaast is er dummy-data vo
 ## Ontwerpkeuzes
 
 - De Document-klasse verwijst niet direct naar de Patient-klasse, maar gebruikt de patient ID. Dit vergroot de flexibiliteit.
-- Voor het aanmaken van documenten via de controller wordt een Data Transfer Object (DTO) gebruikt, voor het terugsturen van data naar de client wordt dit aangemoedigd om te gebruiken. Dit wordt momenteel nog niet gedaan voor het opvragen van documenten.
+- Voor het aanmaken van documenten via de controller wordt een Data Transfer Object (DTO) gebruikt, voor het terugsturen van data naar de client wordt dit aangemoedigd om te gebruiken. Dit wordt momenteel nog niet gedaan voor het opvragen van documenten. Er wordt namelijk
+  bij het opvragen van documenten nog overbodige informatie verstuurd naar de client.
 - Er wordt een Factory Design Pattern toegepast om bij het kiezen van een documenttype automatisch het juiste document aan te maken.
 - Validatie vindt plaats in de DTO, bijvoorbeeld om te controleren of de patient ID bestaat bij het aanmaken van een verwijsbrief.
 - Zorginstellingen kunnen bepaalde documentgegevens (medicatiegebruik, verwijsbrief, allergieinformatie) van de patient inzien via API route /documents. Hiervoor kunnen er query parameters worden gebruikt.
 - Foutafhandeling wordt succesvol opgevangen via exceptions in de map /controllers/exceptions en vanuit de controller in de vorm van een HTTP Status code, zoals 404, 400 teruggestuurd.
+
+## Logging
+Bij elke succesvolle document uitwisseling (aanmaak van een document) wordt er met ILogger gelogd in de API controller.
 
 ## API Endpoints
 -- Documenten ophalen
@@ -71,5 +75,20 @@ Bij het opvragen van een specifiek document (verwijsbrief, medicatiegegevens, al
 
 -- Aanmaken van documenten (verwijzingen, medicatiegegevens, allergieoverzicht)
 Endpoint: /documents
+
+Bij het aanmaken van een document wordt de patient id meegegeven. Deze moet bestaan, zo niet ontvangt de client een 404 met een duidelijke foutmelding.
+Daarnaast is er ook een sender, receiver en het document type met de behorende document content.
+
+Voorbeeld van API request in JSON voor het aanmaken van een verwijsbrief naar Hospital B:
+{
+  "PatientId": "c4f0c136-9eeb-4437-9743-f389db6aadbf",
+  "Sender": "Hospital A",
+  "Receiver": "Hospital B",
+  "Type": "ReferralLetter",
+  "Content": {
+    "Reason": "Sick!",
+    "Description":"Patient suffers"
+  }
+}
 
 
