@@ -28,8 +28,12 @@ namespace ProgrammeerOpdracht.Controllers
             [FromQuery] string? receiver
             )
         {
+            try
+            {
+
             if (patientId != null)
             {
+
                 var docs = _service.GetDocument(patientId!.Value, type, receiver);
 
                 if (docs == null)
@@ -41,6 +45,11 @@ namespace ProgrammeerOpdracht.Controllers
             }
 
             return Ok(_service.GetAllDocuments());
+            }
+            catch (PatientNotFoundException exception)
+            {
+                return NotFound(exception.Message);
+            }
         }
 
         [HttpGet("{documentId}")]

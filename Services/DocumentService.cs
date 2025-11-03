@@ -39,8 +39,13 @@ namespace ProgrammeerOpdracht.Services
         }
 
         public IEnumerable<Document> GetDocument(Guid patientId, string? type, string? receiver)
-            => _repository.GetDocument(patientId, type, receiver);
-
+        {
+            if (!_patientService.ExistsById(patientId))
+            {
+                throw new PatientNotFoundException($"Couldn't find patient with Id: {patientId}");
+            }
+            return _repository.GetDocument(patientId, type, receiver);
+        }
         public Document? GetDocumentById(Guid id)
             => _repository.GetById(id);
     }
