@@ -91,4 +91,9 @@ Voorbeeld van API request in JSON voor het aanmaken van een verwijsbrief naar Ho
   }
 }
 
+-- Patienten inzien
+Endpoint: /patients
+
+Deze endpoint is gebruikt tijdens development voor het inzien van alle patienten en het selecteren van de juiste id's bij het aanmaken van een document.
+
 
