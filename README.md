@@ -86,6 +86,9 @@ receiver
 documentType
 
 Bij het niet opgeven van query parameters worden alle documenten weergegeven.
+Voorbeeld 
+<img width="1182" height="476" alt="afbeelding" src="https://github.com/user-attachments/assets/98561b0a-a10a-4a0d-87aa-aa4bf8eb3eb5" />
+
 Bij het opvragen van een specifiek document (verwijsbrief, medicatiegegevens, allergie-informatie) kan filtering plaatsvinden op patiënt ID, ontvangend ziekenhuis en documenttype.
 
 -- Aanmaken van documenten (verwijzingen, medicatiegegevens, allergieoverzicht)
@@ -94,21 +97,16 @@ Endpoint: /documents
 Bij het aanmaken van een document wordt de patient id meegegeven. Deze moet bestaan, zo niet ontvangt de client een 404 met een duidelijke foutmelding.
 Daarnaast is er ook een sender, receiver en het document type met de behorende document content.
 
-Voorbeeld van API request in JSON voor het aanmaken van een verwijsbrief naar Hospital B:
-{
-  "PatientId": "c4f0c136-9eeb-4437-9743-f389db6aadbf",
-  "Sender": "Hospital A",
-  "Receiver": "Hospital B",
-  "Type": "ReferralLetter",
-  "Content": {
-    "Reason": "Sick!",
-    "Description":"Patient suffers"
-  }
-}
+Voorbeeld van API request in JSON voor het aanmaken van een verwijsbrief naar Hospital B met de server response:
+<img width="1174" height="792" alt="afbeelding" src="https://github.com/user-attachments/assets/ded23fde-1edb-4054-b4fe-bcb96a3c30ee" />
+
 
 -- Patienten inzien
 Endpoint: /patients
 
 Deze endpoint is gebruikt tijdens development voor het inzien van alle patienten en het selecteren van de juiste id's bij het aanmaken van een document.
+
+Voorbeeld
+<img width="1173" height="637" alt="afbeelding" src="https://github.com/user-attachments/assets/d6ece4da-12ac-4a87-97a0-943959c7ce66" />
 
 
