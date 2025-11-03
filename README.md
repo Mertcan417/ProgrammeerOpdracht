@@ -40,6 +40,20 @@ De abstracte klasse wordt afgeleid door:
 - **MedicationContent** – bevat een lijst van medicijnen die de patiënt gebruikt
 - **ReferralLetterContent** – bevat attributen voor de reden van verwijzing en beschrijving
 
+**Patient** is een klasse die uit de volgende informatie bestaat:
+- Id
+- Name
+- Age
+  
+**Medicine** is een klasse die door de MedicationContent als een lijst met medicijnen wordt gebruikt, deze bestaat uit de volgende informatie:
+- Naam
+- Dosering
+- Frequence (hoevaak de patient de medicijn mag gebruiken)
+- Usage (uitleg hoe de medicijn gebruikt kan worden)
+- Reason (reden voor gebruik)
+- StartDate (datum start van gebruik)
+- EndDate (datum gestopt met gebruik)
+  
 ## Architectuur
 Het project volgt een vierlagenarchitectuur:
 Domeinmodel – bevat geen businesslogica
