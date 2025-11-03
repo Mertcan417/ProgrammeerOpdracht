@@ -9,6 +9,7 @@ Onder "document" wordt verstaan:
 - Medicatiegegevens
 - Allergie-informatie van de patiënt
 - Verwijsbrieven
+
 Met deze definitie is de applicatie opgezet.
 
 ## Domeinmodel
